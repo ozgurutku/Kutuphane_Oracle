@@ -2,6 +2,7 @@ package kütüphaneotomasyonu.manager;
 
 import kütüphaneotomasyonu.form.AdminHomePage;
 import kütüphaneotomasyonu.form.AdminLogin;
+import kütüphaneotomasyonu.form.HomePage;
 import kütüphaneotomasyonu.dal.IAdmin;
 import kütüphaneotomasyonu.dal.OracleAdminDal;
 import java.sql.SQLException;
@@ -58,6 +59,8 @@ public class AdminManager extends PersonManager implements IAdminManager {
                 IAdmin adminRegisterDatabase = new OracleAdminDal();
                 try {
                     adminRegisterDatabase.adminRegister(name, surname, userName, userPassword);
+                    HomePage a=new HomePage();
+                    a.disable();
                 } catch (SQLException exception) {
                     exception.getErrorCode();
                     exception.getMessage();
@@ -86,13 +89,13 @@ public class AdminManager extends PersonManager implements IAdminManager {
 
     public void booksAddControl(String bookName, String authorName, String publishingHouse, String bookType) {
         if (bookName.length() == 0) {
-            JOptionPane.showMessageDialog(new JFrame(), "AD BOŞ BIRAKILAMAZ", "BOŞ BIRAKILAMAZ", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "KİTAP ADI BIRAKILAMAZ", "BOŞ BIRAKILAMAZ", JOptionPane.INFORMATION_MESSAGE);
         } else if (authorName.length() == 0) {
-            JOptionPane.showMessageDialog(new JFrame(), "SOYAD BOŞ BIRAKILAMAZ", "BOŞ BIRAKILAMAZ", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "YAZAR ADI BIRAKILAMAZ", "BOŞ BIRAKILAMAZ", JOptionPane.INFORMATION_MESSAGE);
         } else if (publishingHouse.length() == 0) {
-            JOptionPane.showMessageDialog(new JFrame(), "KULLANICI ADI BOŞ BIRAKILAMAZ", "BOŞ BIRAKILAMAZ", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "YAYIN EVİ BOŞ BIRAKILAMAZ", "BOŞ BIRAKILAMAZ", JOptionPane.INFORMATION_MESSAGE);
         } else if (bookType.length() == 0) {
-            JOptionPane.showMessageDialog(new JFrame(), "ŞİFRE BOŞ BIRAKILAMAZ", "BOŞ BIRAKILAMAZ", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "KİTAP TÜRÜ BIRAKILAMAZ", "BOŞ BIRAKILAMAZ", JOptionPane.INFORMATION_MESSAGE);
         } else {
             IAdmin booksAdd = new OracleAdminDal();
             try {
